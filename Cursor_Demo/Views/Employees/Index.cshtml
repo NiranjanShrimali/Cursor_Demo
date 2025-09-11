@@ -1,0 +1,38 @@
+@model IEnumerable<Cursor_Demo.Models.Employee>
+@{
+	ViewData["Title"] = "Employees";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+	<h2>Employees</h2>
+	<a class="btn btn-primary" asp-action="Create">New Employee</a>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Code</th>
+			<th>Name</th>
+			<th>Department</th>
+			<th>Email</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.EmployeeCode</td>
+				<td>@item.FirstName @item.LastName</td>
+				<td>@item.Department?.Name</td>
+				<td>@item.Email</td>
+				<td>@(item.IsActive ? "Active" : "Inactive")</td>
+				<td class="text-end">
+					<a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+					<a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+

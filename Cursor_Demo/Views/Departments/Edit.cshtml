@@ -1,0 +1,24 @@
+@model Cursor_Demo.Models.Department
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+	ViewData["Title"] = "Edit Department";
+}
+<h2>Edit Department</h2>
+<form asp-action="Edit" method="post">
+	<input type="hidden" asp-for="Id" />
+	<div class="mb-3">
+		<label asp-for="Name" class="form-label"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Parent Department</label>
+		<select asp-for="ParentDepartmentId" class="form-select" asp-items="@(new SelectList(ViewBag.Departments, "Id", "Name"))">
+			<option value="">-- None --</option>
+		</select>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+	<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+
