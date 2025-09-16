@@ -1,0 +1,51 @@
+@model Cursor_Demo.Models.Employee
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+	ViewData["Title"] = "Edit Employee";
+}
+<h2>Edit Employee</h2>
+<form asp-action="Edit" method="post">
+	<input type="hidden" asp-for="Id" />
+	<div class="row">
+		<div class="col-md-6">
+			<div class="mb-3">
+				<label asp-for="EmployeeCode" class="form-label"></label>
+				<input asp-for="EmployeeCode" class="form-control" />
+			</div>
+			<div class="mb-3">
+				<label asp-for="FirstName" class="form-label"></label>
+				<input asp-for="FirstName" class="form-control" />
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="LastName" class="form-label"></label>
+				<input asp-for="LastName" class="form-control" />
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="Email" class="form-label"></label>
+				<input asp-for="Email" class="form-control" />
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="mb-3">
+				<label class="form-label">Department</label>
+				<select asp-for="DepartmentId" class="form-select" asp-items="@(new SelectList(ViewBag.Departments, "Id", "Name"))">
+					<option value="">-- None --</option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label asp-for="DateOfBirth" class="form-label"></label>
+				<input asp-for="DateOfBirth" type="date" class="form-control" />
+			</div>
+			<div class="form-check mb-3">
+				<input class="form-check-input" asp-for="IsActive" />
+				<label class="form-check-label" asp-for="IsActive"></label>
+			</div>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+	<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+
